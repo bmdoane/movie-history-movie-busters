@@ -2,11 +2,23 @@
 <html>
 <head>
 	<title>Movie Magic</title>
-	<<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./css/main.css">
+	<link rel="stylesheet" href="./lib/bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
-<body>
+<body ng-app="MovieHistory">
+	<div ng-view>
+		<div ng-controller="APItestCtrl"></div>
+	</div>
 
+	<script src="./lib/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="./lib/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="./lib/bower_components/angular/angular.min.js"></script>
+	<script src="./lib/bower_components/angular-route/angular-route.min.js"></script>
+	<script src="./lib/bower_components/angularfire/dist/angularfire.min.js"></script>
+	<script src="./lib/bower_components/firebase/firebase.js"></script>
 
 	<script src="./app/app.js"></script>
+	<script src="./app/factories/MovieFactory.js"></script>
+	<script src="./app/controllers/APItestCtrl.js"></script>
 </body>
 </html>
