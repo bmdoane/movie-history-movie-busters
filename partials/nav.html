@@ -1,7 +1,7 @@
 <nav>
   <ul>
-    <li><a href="#/find">Find Movie</a></li>
-    <li><a href="#/search">Search My Movies</a></li>
+    <input type="text" ng-model="findTitle" class="form-control" autofocus="true" placeholder="Find a movie...">
+    <a href="#/display"><button ng-click="find()" class="btn btn-success">Submit</button></a>
     <li class="align-right">
       <a href="#/login" ng-click="logout()">
         <span ng-if="isAuthenticated()">Logout</span>
@@ -10,3 +10,4 @@
     </li>
   </ul>
 </nav>
+

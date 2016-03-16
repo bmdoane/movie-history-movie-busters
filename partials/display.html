@@ -1,0 +1,31 @@
+<nav>
+  <ul>
+    <li class="align-right">
+      <a href="#/login" ng-click="logout()">
+        <span ng-if="isAuthenticated()">Logout</span>
+        <span ng-if="!isAuthenticated()">Login</span>
+      </a>
+    </li>
+  </ul>
+  <input type="text" ng-model="findTitle" class="form-control" autofocus="true" placeholder="Find a movie...">
+  <a href="#/display"><button ng-click="find()" class="btn btn-success">Submit</button></a>
+</nav>
+
+<h2>Search Results</h2>
+
+<div>
+  <span ng-if="movie">
+    <img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437">
+  	<div><a ng-click="add()" href="">Add to watch list</a></div>
+  </span>
+</div>
+
+
+
+
+
+
+
+
+
+

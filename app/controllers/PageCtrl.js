@@ -1,5 +1,5 @@
 "use strict";
-
+// If you are not logged in you are not authorized to use app
 app.controller("PageCtrl",
 [
   "$scope",

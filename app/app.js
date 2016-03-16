@@ -1,6 +1,6 @@
 "use strict";
 
-let app = angular.module("MovieApp", ["ngRoute", "firebase"]).constant('firebaseURL', "https://nss-team-america.firebaseio.com");
+let app = angular.module("MovieHistory", ["ngRoute", "firebase"]).constant('firebaseURL', "https://nss-team-america.firebaseio.com");
 
 
 /*
@@ -24,11 +24,6 @@ app.config(["$routeProvider",
         templateUrl: "partials/how-to.html",
         resolve: { isAuth }
       }).
-      when("/find", {
-        templateUrl: "partials/find-new.html",
-        controller: "FindCtrl",
-        resolve: { isAuth }
-      }).
       when("/login", {
         templateUrl: "partials/login.html",
         controller: "LoginCtrl"
@@ -37,14 +32,9 @@ app.config(["$routeProvider",
         templateUrl: "partials/login.html",
         controller: "LoginCtrl"
       }).
-      when("/search", {
-        templateUrl: "partials/filter.html",
-        controller: "SearchCtrl",
-        resolve: { isAuth }
-      }).
-      when("/user-movies", {
-        templateUrl: "partials/user-movies.html",
-        controller: "UserMovieCtrl",
+      when("/display", {
+        templateUrl: "partials/display.html",
+        controller: "FindCtrl",
         resolve: { isAuth }
       }).
       otherwise({
