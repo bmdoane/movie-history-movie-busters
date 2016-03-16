@@ -9,7 +9,9 @@ app.factory("movieFactory", function($q, $http) {
 
       // Perform some asynchronous operation, resolve or reject 
       // the promise when appropriate.
-      $http.get('http://www.omdbapi.com/?t=bottle rocket&y=&plot=short&r=json') // TEST URL
+      let searchString = "Apocalypse Now";
+      console.log(searchString);
+      $http.get(`http://www.omdbapi.com/?t=${searchString}&y=&plot=short&r=json`)
       .success(
         function(selectedMovie) {
           resolve(selectedMovie);
@@ -17,7 +19,6 @@ app.factory("movieFactory", function($q, $http) {
           reject(error);
         }
       );
-
     });
   }
   return getMovies;

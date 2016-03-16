@@ -5,16 +5,23 @@ app.controller("test2Ctrl", [
   "movieFactory",
   
   function($scope, movieFactory) {
+
     movieFactory().then(
     // Resolve
-    function (selectedMovie) {
-      console.log("selectedMovie: ", selectedMovie);
+    function (selected) {
+    	$scope.selectedMovie = selected;
+      console.log("selectedMovie: ", $scope.selectedMovie);
     },
     // Reject
     function(err) {
       console.log(err);
     }
     );
+
+    // ng-click test
+    $scope.test = function() {
+    	console.log("test");
+    }
 
   }
 ]);
