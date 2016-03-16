@@ -11,7 +11,9 @@ app.controller("APItestCtrl", [
       console.log("selectedMovie: ", selectedMovie);
     },
     // Reject
-    err => console.log(err)
+    function(err) {
+      console.log(err);
+    }
     );
 
   }
