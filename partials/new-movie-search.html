@@ -1,1 +1,3 @@
-<input type="text" placeholder="Search for a movie">
+<div ng-controller="searchInput">
+    <input ng-model="searchString" ng-keypress="enterKP($event)" type="text" placeholder="Search for a movie">
+</div>

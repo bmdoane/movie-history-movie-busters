@@ -1,12 +1,12 @@
 "use strict";
 
-app.controller("test2Ctrl", [
+app.controller("selectedMovie", [
   "$scope",
   "movieFactory",
   
   function($scope, movieFactory) {
 
-    movieFactory().then(
+    movieFactory(searchString).then(
     // Resolve
     function (selected) {
     	$scope.selectedMovie = selected;
