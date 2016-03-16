@@ -6,10 +6,6 @@ let app = angular.module("MovieHistory", ['ngRoute', 'firebase'])
 app.config(["$routeProvider",
   function ($routeProvider) {
     $routeProvider.
-      when("/", {
-        templateUrl: "partials/test1.html",
-        controller: "test1Ctrl"
-      }).
       when("/test2", {
         templateUrl: "partials/test2.html",
         controller: "test2Ctrl"
