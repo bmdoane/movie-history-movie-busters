@@ -1,2 +1,6 @@
 html body {
   background-color: lightgreen; }
+
+html nav ul li {
+  display: inline;
+  margin: .5em; }

@@ -2,4 +2,9 @@ html {
 	body {
 		background-color: lightgreen;
 	}
+
+    nav ul li {
+        display: inline;
+        margin: .5em;
+    }
 }
