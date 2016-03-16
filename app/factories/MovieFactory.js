@@ -1,24 +1,13 @@
 "use strict";
 
-app.factory("movieFactory", function($q, $http) {
-
-  function getMovies(searchString) {
-
-    // Return a promise for our async XHR
-    return $q(function(resolve, reject) {
-
-      // Perform some asynchronous operation, resolve or reject 
-      // the promise when appropriate.
-      $http.get(`http://www.omdbapi.com/?t=${searchString}&y=&plot=short&r=json`)
-      .success(
-        function(selectedMovie) {
-          resolve(selectedMovie);
-        },function(error) {
-          reject(error);
-        }
-      );
-    });
-  }
-  return getMovies;
-});
-
+app.factory("MovieFactory", ($q, $http) =>
+  (title) =>
+    $q((resolve, reject) => // Return a promise for our async XHR
+      $http
+        .get(`http://www.omdbapi.com/?t=${title}&y=&plot=short&r=json&apikey=7c212437`)
+        .success(
+          movieCollection => resolve(movieCollection),
+          error => reject(error)
+        )
+    )
+);

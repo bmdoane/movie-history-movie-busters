@@ -1,0 +1,30 @@
+<section>
+  <a href="#/user-movies"><button>Show Unwatched</button></a>
+  <a href="#/user-movies"><button>Show Watched</button></a>
+  <input type="text" ng-model="searchUserMovie">
+  <button ng-click="search()">Search</button>
+</section>
+<div class="row">
+  <div ng-repeat="movie in movies">
+    <!-- card start-->
+    <div class="col-md-4 card">
+      <h1>{{movie.title}}</h1>
+      <!-- movie poster -->
+      <div class="card-movie-poster">
+        <img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437">
+      </div>
+
+      <!-- card user info -->
+      <div class="card-user-info" ng-if="!movie.watched">
+        <a href="#">WATCHED</a>
+      </div>
+
+      <!-- card user rating -->
+      <div class="card-user-rating" ng-if="movie.watched">
+        <div>Rating: {{movie.rating}}</div>
+      </div>
+
+    </div>
+    <!-- card end -->
+  </div>
+</div>
