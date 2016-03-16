@@ -1,0 +1,44 @@
+{
+  "movies": {
+    "big": {
+      "title": "The Big Lebowski", 
+      "year": "1998",
+      "actors": ["Jeff Bridges", "John Goodman"],
+      "rating": "5",
+      "watched": true,
+      "tracked": true
+    },  
+    "empire": {
+      "title": "Star Wars: Episode V - The Empire Strikes Back", 
+      "year": "1980",
+      "actors": ["Mark Hamill", "Harrison Ford", "Carrie Fisher"],
+      "rating": "5",
+      "watched": false,
+      "tracked": true
+    },    
+    "elf": {
+      "title": "Elf", 
+      "year": "2003",
+      "actors": ["Will Ferrell", "James Caan", "Zooey Deschanel"],
+      "rating": "5",
+      "watched": true,
+      "tracked": true
+    },
+    "heat": {
+      "title": "Heat", 
+      "year": "1995",
+      "actors": ["Al Pacino", "Robert De Niro"],
+      "rating": "5",
+      "watched": false,
+      "tracked": true
+    },
+    "dark": {
+      "title": "The Dark Knight", 
+      "year": "2008",
+      "actors": ["Christian Bale", "Heath Ledger", "Aaron Eckhart"],
+      "rating": "5",
+      "watched": true,
+      "tracked": true
+    }
+  }
+}

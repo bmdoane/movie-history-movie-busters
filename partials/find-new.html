@@ -1,0 +1,20 @@
+<h2>Find movie on OMDB</h2>
+<input type="text" ng-model="findTitle">
+<button ng-click="find()">Find</button>
+
+<div>
+  <span ng-if="movie">
+    <img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437">
+  	<div><a ng-click="add()" href="">Add to watch list</a></div>
+  </span>
+</div>
+
+
+
+
+
+
+
+
+
+
