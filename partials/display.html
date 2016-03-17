@@ -18,7 +18,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="filterArea">
-          <h2>Filters</h2>
+          <h2>Movie History <span class="breadcrumb">> {{breadcrumb}}</span></h2>
             <ul>
               <li>
                 <button ng-click="toggleUntracked()" class="btn btn-success">Show Untracked</button>
@@ -54,7 +54,7 @@
                   <span ng-if="!movie.tracked"><div><a ng-click="add(movie)" href="">Add to watch list</a></div></span>
                   <span ng-if="movie.tracked && !movie.watched"><div><a ng-click="updateRating()" href="">No stars</a></div></span>
                   <span ng-if="movie.watched"><div><a ng-click="updateRating()" href="">{{movie.rating}}</a></div></span>
-                  <span ng-if="movie.tracked"><div><a ng-click="delete(movie)" href="">Delete</a></div></span>
+                  <span ng-if="movie.tracked"><div><a class="deleteMovie" ng-click="delete(movie)" href="">Delete</a></div></span>
                 </div>
               </div>
             </span>
