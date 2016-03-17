@@ -1,8 +1,8 @@
 
 /* DISPLAY PAGE STYLING */
 
-.breadcrumb {
-  color:#636161;
+.breadcrumbs {
+  color: #999;
 }
 
 .filterArea ul {
@@ -22,4 +22,12 @@
   padding: 6px;
   border-radius: 8px; 
   text-decoration: none;
+}
+
+.star--empty {
+  color: #ccc;
+}
+
+.star--filled {
+  color: gold;
 }

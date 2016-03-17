@@ -88,7 +88,7 @@ app.controller("FindCtrl", [
           title: movie.Title,
           year: movie.Year,
           actors: movie.Actors,
-          rating: "0",
+          rating: 0,
           watched: false,
           tracked: true,
           imdbID: movie.imdbID
