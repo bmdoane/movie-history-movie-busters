@@ -3,29 +3,90 @@
 app.controller("FindCtrl", [
   "$scope",
   "MovieFactory",
+  "FirebaseFactory",
   "$http",
 
-  function($scope, MovieFactory, $http) {
+  function($scope, MovieFactory, FirebaseFactory, $http) {
     $scope.findTitle = "";
-    $scope.movie = false;
-    $scope.movieImdbID = "";
+    $scope.filterOptions;
+    $scope.movieList;
 
     // this function is triggered by find button
     $scope.find = function() {
+
+      $scope.filterOptions = {};
+
     // takes findTitle string and returns search results from OMDB API
+      $scope.movieList = [];
+
       MovieFactory($scope.findTitle).then(
-      	movieCollection => {console.log(movieCollection)
-      		$scope.movie = movieCollection;
-          $scope.movieImdbId = $scope.movie.imdbID;
+      	movie => {console.log(movie)
+      		// $scope.movie = movie;
+          $scope.movieList.push(movie);
       	},
       	err => console.log(err)
       	);
+
+    // takes findTitle string and returns search results from Firebase
+      FirebaseFactory().then(
+        movieCollection => {
+          //allow for uppercase & lowercase matches
+          let searchStr = $scope.findTitle.toLowerCase();
+
+          console.log("movieCollection from FB", movieCollection);
+          if ($scope.findTitle){
+            for (let key in movieCollection) {
+              if (movieCollection[key].title.toLowerCase().indexOf(searchStr) > -1) {
+                $scope.movieList.push(movieCollection[key]);
+              }
+            }
+          } else {
+             for (let key in movieCollection) {
+              $scope.movieList.push(movieCollection[key]);
+            }
+          }
+
+          console.log("movieList", $scope.movieList);
+
+        })
+    }
+
+    $scope.resetFilterOptions = function () {
+      $scope.filterOptions = {};
+    }
+
+    $scope.toggleUntracked = function () {
+      //only untracked movies returned from OMDB API have a "Response" key of "True"
+      $scope.filterOptions = {Response: "True"};
+    }
+    
+    $scope.toggleUnwatched = function () {
+      $scope.filterOptions = {watched: false};
+    }
+
+    $scope.toggleWatched = function () {
+      $scope.filterOptions = {watched: true};
+    }
+
+    $scope.toggleFavorites = function () {
+      $scope.filterOptions = {rating: "10"};
     }
 
 
-    $scope.add = function () {
 
-      //take movie and add tracked id of true
+    $scope.add = function (movie) {
+      // console.log("movie", movie);
+      console.log("movieList", $scope.movieList);
+
+      let newMovie = {
+          title: movie.Title,
+          year: movie.Year,
+          actors: movie.Actors,
+          rating: "0",
+          watched: false,
+          tracked: true,
+          imdbID: movie.imdbID
+        };
 
       // POST the song to Firebase
       $http.post(
@@ -33,15 +94,7 @@ app.controller("FindCtrl", [
 
         // Remember to stringify objects/arrays before
         // sending them to an API
-        JSON.stringify({
-          title: $scope.movie.Title,
-          year: $scope.movie.Year,
-          actors: $scope.movie.Actors,
-          rating: "0",
-          watched: false,
-          tracked: true,
-          imdbID: $scope.movie.imdbID
-        })
+        JSON.stringify(newMovie)
 
       // The $http.post() method returns a promise, so you can use then()
       ).then(
@@ -50,8 +103,10 @@ app.controller("FindCtrl", [
       );
 
 
-      $scope.movie = false;
-      $scope.findTitle = "";
+      //find the index of the OMDB movie in the movielist that we want to add
+      let index = $scope.movieList.indexOf(movie);
+      //overwrite that index to be the newMovie object (firebase format) with watched and tracked keys
+      $scope.movieList[index] = newMovie;
 
     };
 

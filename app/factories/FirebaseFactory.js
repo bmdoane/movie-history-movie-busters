@@ -7,7 +7,15 @@ app.factory("FirebaseFactory", ($q, $http) =>
       $http
         .get("https://nss-team-america.firebaseio.com/movies.json")
         .success(
-          userCollection => resolve(userCollection),
+          userCollection => {
+
+            for (let key in userCollection){
+              userCollection[key].id = key;
+            }
+
+
+            resolve(userCollection)
+          },
           error => reject(error)
         )
     )
