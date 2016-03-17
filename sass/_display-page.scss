@@ -1,0 +1,25 @@
+
+/* DISPLAY PAGE STYLING */
+
+.breadcrumb {
+  color:#636161;
+}
+
+.filterArea ul {
+  list-style:none;
+  margin: 0;
+  padding: 0;
+}
+
+.filterArea li {
+  display:inline-block;
+  margin-right: 10px; 
+}
+
+.deleteMovie {
+  color: red;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 8px; 
+  text-decoration: none;
+}
