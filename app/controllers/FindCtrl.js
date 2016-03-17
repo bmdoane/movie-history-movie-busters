@@ -9,6 +9,7 @@ app.controller("FindCtrl", [
 
   function($scope, MovieFactory, FirebaseFactory, $http, firebaseURL) {
     $scope.findTitle = "";
+    $scope.breadcrumb = "";
     $scope.filterOptions;
     $scope.movieList;
 
@@ -59,18 +60,22 @@ app.controller("FindCtrl", [
     $scope.toggleUntracked = function () {
       //only untracked movies returned from OMDB API have a "Response" key of "True"
       $scope.filterOptions = {Response: "True"};
+      $scope.breadcrumb = "Untracked"; 
     }
     
     $scope.toggleUnwatched = function () {
       $scope.filterOptions = {watched: false};
+      $scope.breadcrumb = "Unwatched";
     }
 
     $scope.toggleWatched = function () {
       $scope.filterOptions = {watched: true};
+      $scope.breadcrumb = "Watched"; 
     }
 
     $scope.toggleFavorites = function () {
       $scope.filterOptions = {rating: "10"};
+      $scope.breadcrumb = "Favorites"; 
     }
 
 
@@ -134,6 +139,5 @@ app.controller("FindCtrl", [
     };
 
     }
-
 
 ]);
