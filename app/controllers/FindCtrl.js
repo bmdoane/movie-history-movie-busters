@@ -5,8 +5,9 @@ app.controller("FindCtrl", [
   "MovieFactory",
   "FirebaseFactory",
   "$http",
+  "firebaseURL",
 
-  function($scope, MovieFactory, FirebaseFactory, $http) {
+  function($scope, MovieFactory, FirebaseFactory, $http, firebaseURL) {
     $scope.findTitle = "";
     $scope.filterOptions;
     $scope.movieList;
@@ -107,7 +108,29 @@ app.controller("FindCtrl", [
       let index = $scope.movieList.indexOf(movie);
       //overwrite that index to be the newMovie object (firebase format) with watched and tracked keys
       $scope.movieList[index] = newMovie;
+    };
 
+
+
+
+    $scope.delete = function (movie) {
+      //remove movie from movieList
+      let movieIndex = $scope.movieList.indexOf(movie);
+      if (movieIndex >= 0) {
+        $scope.movieList.splice(movieIndex, 1);
+      }
+
+      //delete movie from firebase
+      $.ajax({
+        url: firebaseURL +`/movies/${movie.id}.json`,
+        method: 'DELETE'
+      })
+      .done(function() {
+        console.log("movie deleted from firebase");
+      })
+      .fail(function() {
+        console.log("error while deleting movie from firebase");
+      });
     };
 
     }
