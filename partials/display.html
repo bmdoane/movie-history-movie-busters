@@ -8,16 +8,27 @@
     </li>
   </ul>
   <input type="text" ng-model="findTitle" class="form-control" autofocus="true" placeholder="Find a movie...">
-  <a href="#/display"><button ng-click="find()" class="btn btn-success">Submit</button></a>
+  <a href="#/display"><button ng-click="find(); resetFilterOptions()" class="btn btn-success">Submit</button></a>
 </nav>
+
+<h2>Filters</h2>
+<button ng-click="toggleUntracked()" class="btn btn-success">Show Untracked</button>
+<button ng-click="toggleUnwatched()" class="btn btn-success">Show Unwatched</button>
+<button ng-click="toggleWatched()" class="btn btn-success">Show Watched</button>
+<button ng-click="toggleFavorites()" class="btn btn-success">Show Favorites</button>
+
+
 
 <h2>Search Results</h2>
 
 <div>
   <span ng-if="movieList">
-    <div ng-repeat="movie in movieList">
-      <img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437">
-    	<div><a ng-click="add()" href="">Add to watch list</a></div>
+    <div ng-repeat="movie in movieList | filter: filterOptions">
+      <span ng-if="movie.imdbID"><img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437"></span>
+
+      <span ng-if="!movie.tracked"><div><a ng-click="add(movie)" href="">Add to watch list</a></div></span>
+    	<span ng-if="movie.tracked && !movie.watched"><div><a ng-click="updateRating()" href="">No stars</a></div></span>
+      <span ng-if="movie.watched"><div><a ng-click="updateRating()" href="">{{movie.rating}}</a></div></span>
     </div>
   </span>
 </div>
