@@ -15,8 +15,8 @@ app.controller("FindCtrl", [
     $scope.find = function() {
 
       $scope.filterOptions = {};
-    // takes findTitle string and returns search results from OMDB API
 
+    // takes findTitle string and returns search results from OMDB API
       $scope.movieList = [];
 
       MovieFactory($scope.findTitle).then(
@@ -59,6 +59,7 @@ app.controller("FindCtrl", [
       //only untracked movies returned from OMDB API have a "Response" key of "True"
       $scope.filterOptions = {Response: "True"};
     }
+    
     $scope.toggleUnwatched = function () {
       $scope.filterOptions = {watched: false};
     }
@@ -75,6 +76,7 @@ app.controller("FindCtrl", [
 
     $scope.add = function (movie) {
       // console.log("movie", movie);
+      console.log("movieList", $scope.movieList);
 
       let newMovie = {
           title: movie.Title,
@@ -101,9 +103,9 @@ app.controller("FindCtrl", [
       );
 
 
-      //find the index of the movie in the movielist
+      //find the index of the OMDB movie in the movielist that we want to add
       let index = $scope.movieList.indexOf(movie);
-      //overwrite that index to be the newMovie object with watched and tracked keys
+      //overwrite that index to be the newMovie object (firebase format) with watched and tracked keys
       $scope.movieList[index] = newMovie;
 
     };
