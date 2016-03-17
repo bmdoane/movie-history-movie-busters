@@ -1,39 +1,70 @@
 <nav>
-  <ul>
-    <li class="align-right">
-      <a href="#/login" ng-click="logout()">
-        <span ng-if="isAuthenticated()">Logout</span>
-        <span ng-if="!isAuthenticated()">Login</span>
-      </a>
-    </li>
-  </ul>
-  <input type="text" ng-model="findTitle" class="form-control" autofocus="true" placeholder="Find a movie...">
-  <a href="#/display"><button ng-click="find(); resetFilterOptions()" class="btn btn-success">Submit</button></a>
+  <div class="logoutArea">
+    <a href="#/login" ng-click="logout()" class="btn btn-success logoutBtn">
+      <span ng-if="isAuthenticated()">Logout</span>
+      <span ng-if="!isAuthenticated()">Login</span>
+    </a>
+  </div>
+  <div class="searchInput">
+    <input type="text" ng-model="findTitle" class="form-control" autofocus="true" placeholder="Find a movie...">
+    <a href="#/display"><button ng-click="find(); resetFilterOptions()" class="btn btn-success">Submit</button></a>
+  </div>
 </nav>
 
-<h2>Filters</h2>
-<button ng-click="toggleUntracked()" class="btn btn-success">Show Untracked</button>
-<button ng-click="toggleUnwatched()" class="btn btn-success">Show Unwatched</button>
-<button ng-click="toggleWatched()" class="btn btn-success">Show Watched</button>
-<button ng-click="toggleFavorites()" class="btn btn-success">Show Favorites</button>
 
+<div class="row">
+  <div class="col-md-12">
 
+    <div class="row">
+      <div class="col-md-12">
+        <div class="filterArea">
+          <h2>Filters</h2>
+            <ul>
+              <li>
+                <button ng-click="toggleUntracked()" class="btn btn-success">Show Untracked</button>
+              </li>
+              <li>
+                <button ng-click="toggleUnwatched()" class="btn btn-success">Show Unwatched</button>
+              </li>
+              <li>
+                <button ng-click="toggleWatched()" class="btn btn-success">Show Watched</button>
+              </li>
+              <li>
+                <button ng-click="toggleFavorites()" class="btn btn-success">Show Favorites</button>
+              </li>
+            </ul>
+          </div>
+        </div>       
+      </div>
 
-<h2>Search Results</h2>
+      <div class="row">
+        <div class="col-md-12">
+        
+          <div class="breadCrumbs">
+            <h2>Search Results</h2>
+          </div>
 
-<div>
-  <span ng-if="movieList">
-    <div ng-repeat="movie in movieList | filter: filterOptions">
-      <span ng-if="movie.imdbID"><img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437"></span>
+          <div class="row">
+            <span ng-if="movieList">
+              <div ng-repeat="movie in movieList | filter: filterOptions">
+                <div class="col-md-4">
 
-      <span ng-if="!movie.tracked"><div><a ng-click="add(movie)" href="">Add to watch list</a></div></span>
-    	<span ng-if="movie.tracked && !movie.watched"><div><a ng-click="updateRating()" href="">No stars</a></div></span>
-      <span ng-if="movie.watched"><div><a ng-click="updateRating()" href="">{{movie.rating}}</a></div></span>
-      <span ng-if="movie.tracked"><div><a ng-click="delete(movie)" href="">Delete</a></div></span>
+                  <span ng-if="movie.imdbID"><img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437"></span>
 
-    </div>
-  </span>
+                  <span ng-if="!movie.tracked"><div><a ng-click="add(movie)" href="">Add to watch list</a></div></span>
+                  <span ng-if="movie.tracked && !movie.watched"><div><a ng-click="updateRating()" href="">No stars</a></div></span>
+                  <span ng-if="movie.watched"><div><a ng-click="updateRating()" href="">{{movie.rating}}</a></div></span>
+                  <span ng-if="movie.tracked"><div><a ng-click="delete(movie)" href="">Delete</a></div></span>
+                </div>
+              </div>
+            </span>
+          </div>
+
+        </div>
+      </div>
+  </div>
 </div>
+
 
 
 
