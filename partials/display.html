@@ -14,9 +14,11 @@
 <h2>Search Results</h2>
 
 <div>
-  <span ng-if="movie">
-    <img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437">
-  	<div><a ng-click="add()" href="">Add to watch list</a></div>
+  <span ng-if="movieList">
+    <div ng-repeat="movie in movieList">
+      <img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437">
+    	<div><a ng-click="add()" href="">Add to watch list</a></div>
+    </div>
   </span>
 </div>
 

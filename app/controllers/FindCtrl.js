@@ -3,24 +3,46 @@
 app.controller("FindCtrl", [
   "$scope",
   "MovieFactory",
+  "FirebaseFactory",
   "$http",
 
-  function($scope, MovieFactory, $http) {
+  function($scope, MovieFactory, FirebaseFactory, $http) {
     $scope.findTitle = "";
-    $scope.movie = false;
-    $scope.movieImdbID = "";
+    $scope.movieList;
 
     // this function is triggered by find button
     $scope.find = function() {
     // takes findTitle string and returns search results from OMDB API
+
+      $scope.movieList = [];
+
       MovieFactory($scope.findTitle).then(
-      	movieCollection => {console.log(movieCollection)
-      		$scope.movie = movieCollection;
-          $scope.movieImdbId = $scope.movie.imdbID;
+      	movie => {console.log(movie)
+      		// $scope.movie = movie;
+          $scope.movieList.push(movie);
       	},
       	err => console.log(err)
       	);
+
+    // takes findTitle string and returns search results from Firebase
+      FirebaseFactory().then(
+        movieCollection => {
+          //allow for uppercase & lowercase matches
+          let searchStr = $scope.findTitle.toLowerCase();
+
+          console.log("movieCollection from FB", movieCollection);
+          for (let key in movieCollection) {
+            if (movieCollection[key].title.toLowerCase().indexOf(searchStr) > -1) {
+              $scope.movieList.push(movieCollection[key]);
+            }
+          }
+
+          console.log("movieList", $scope.movieList);
+
+        })
     }
+
+
 
 
     $scope.add = function () {
@@ -50,8 +72,8 @@ app.controller("FindCtrl", [
       );
 
 
-      $scope.movie = false;
-      $scope.findTitle = "";
+      // $scope.movie = false;
+      // $scope.findTitle = "";
 
     };
 
