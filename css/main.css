@@ -1,6 +1,46 @@
-html body {
+/* MAIN CSS STYLING */
+body {
   background-color: lightgreen; }
 
-html nav ul li {
-  display: inline;
-  margin: .5em; }
+.left {
+  float: left; }
+
+.right {
+  float: right; }
+
+/* NAV STYLE */
+.logoutArea {
+  text-align: right; }
+
+.logoutBtn {
+  margin: 10px 0; }
+
+.searchInput {
+  margin-top: 20px; }
+
+.searchInput input {
+  display: inline-block;
+  width: 40%; }
+
+.searchInput a button {
+  padding: 6px 22px; }
+
+/* DISPLAY PAGE STYLING */
+.breadcrumb {
+  color: #636161; }
+
+.filterArea ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+
+.filterArea li {
+  display: inline-block;
+  margin-right: 10px; }
+
+.deleteMovie {
+  color: red;
+  background-color: #fff;
+  padding: 6px;
+  border-radius: 8px;
+  text-decoration: none; }

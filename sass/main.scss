@@ -1,10 +1,19 @@
-html {
-	body {
-		background-color: lightgreen;
-	}
+$primary-color: lightgreen;
 
-    nav ul li {
-        display: inline;
-        margin: .5em;
-    }
+/* MAIN CSS STYLING */
+
+body {
+	background-color: $primary-color;
 }
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+
+@import 'nav';
+@import 'display-page';
