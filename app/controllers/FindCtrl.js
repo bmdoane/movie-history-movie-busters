@@ -18,18 +18,27 @@ app.controller("FindCtrl", [
     // takes findTitle string and returns search results from OMDB API and Firebase
     $scope.find = function() {
 
+
+      //if search bar is empty, 
+      if (!$scope.findTitle){
+        return
+      }
+
+      //start with an empty movieList (nothing on page)
       $scope.movieList = [];
 
-      //search for matching title from OMDB
-      MovieFactory($scope.findTitle).then(
-      	movie => {
-          //if returned, add movie from OMDB to movieList 
-          if (movie) {
-            $scope.movieList.push(movie);
-          }
-      	},
-      	err => console.log(err)
-      	);
+      //search for matching title from OMDB only if search input is longer than 1 character (OMDB returns error for 1 character search)
+      if ($scope.findTitle.length > 1) {
+        MovieFactory($scope.findTitle).then(
+        	movie => {
+            //if returned, add movie from OMDB to movieList 
+            if (movie) {
+              $scope.movieList.push(movie);
+            }
+        	},
+        	err => console.log(err)
+        	);
+      }
 
     // takes findTitle string and returns search results from Firebase
       FirebaseFactory().then(
@@ -54,6 +63,12 @@ app.controller("FindCtrl", [
           }
           console.log("movieList result", $scope.movieList);
         })
+    }
+
+    //clear the search input and remove all movies from the movieList (none displayed on page)
+    $scope.clearSearch = function () {
+      $scope.findTitle = "";
+      $scope.movieList = [];
     }
 
 

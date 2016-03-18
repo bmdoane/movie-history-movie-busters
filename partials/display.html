@@ -8,6 +8,7 @@
   <div class="searchInput">
     <input type="text" ng-model="findTitle" class="form-control" autofocus="true" placeholder="Find a movie...">
     <a href="#/display"><button ng-click="find(); resetFilterOptions()" class="btn btn-success">Search</button></a>
+    <button ng-click="clearSearch()" class="btn btn-success">Clear</button>
   </div>
 </nav>
 
@@ -44,7 +45,7 @@
         <div class="row">
           <span ng-if="!findTitle"><h2>Use the Search Bar Above!</h2></span>
           <span ng-if="movieList">
-            <h2>Search Results</h2>
+            <span ng-if="findTitle"><h2>Search Results</h2></span>
             <div ng-repeat="movie in movieList | filter: filterOptions">
               <div class="col-md-4">
   
