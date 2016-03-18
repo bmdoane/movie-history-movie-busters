@@ -46,7 +46,9 @@ body {
   text-decoration: none; }
 
 .star--empty {
-  color: #ccc; }
+  color: #fff;
+  font-size: 1.75em; }
 
 .star--filled {
-  color: gold; }
+  color: gold;
+  font-size: 1.75em; }
