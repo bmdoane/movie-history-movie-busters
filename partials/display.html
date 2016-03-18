@@ -7,7 +7,7 @@
   </div>
   <div class="searchInput">
     <input type="text" ng-model="findTitle" class="form-control" autofocus="true" placeholder="Find a movie...">
-    <a href="#/display"><button ng-click="find(); resetFilterOptions()" class="btn btn-success">Submit</button></a>
+    <a href="#/display"><button ng-click="find(); resetFilterOptions()" class="btn btn-success">Search</button></a>
   </div>
 </nav>
 
@@ -18,7 +18,9 @@
     <div class="row">
       <div class="col-md-12">
         <div class="filterArea">
-          <h2>Movie History <span class="breadcrumbs">> {{breadcrumb}}</span></h2>
+          <div class="breadCrumbs">
+            <h2>Movie History <span class="breadcrumbs">> {{breadcrumb}}</span></h2>
+          </div>
             <ul>
               <li>
                 <button ng-click="toggleUntracked()" class="btn btn-success">Show Untracked</button>
@@ -33,35 +35,34 @@
                 <button ng-click="toggleFavorites()" class="btn btn-success">Show Favorites</button>
               </li>
             </ul>
-          </div>
-        </div>       
-      </div>
+        </div>
+      </div>       
+    </div>
 
-      <div class="row">
-        <div class="col-md-12">
-        
-          <div class="breadCrumbs">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="row">
+          <span ng-if="!findTitle"><h2>Use the Search Bar Above!</h2></span>
+          <span ng-if="movieList">
             <h2>Search Results</h2>
-          </div>
+            <div ng-repeat="movie in movieList | filter: filterOptions">
+              <div class="col-md-4">
+  
+                <span ng-if="movie.imdbID"><img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437"></span>
 
-          <div class="row">
-            <span ng-if="movieList">
-              <div ng-repeat="movie in movieList | filter: filterOptions">
-                <div class="col-md-4">
+                <span ng-if="!movie.tracked"><div><a ng-click="add(movie)" href="">Add to watch list</a></div></span>
 
-                  <span ng-if="movie.imdbID"><img ng-src="http://img.omdbapi.com/?i={{movie.imdbID}}&apikey=7c212437"></span>
+                <span ng-if="movie.tracked && !movie.watched"><div><a ng-click="updateRating()" href="">No stars</a></div></span>
 
-                  <span ng-if="!movie.tracked"><div><a ng-click="add(movie)" href="">Add to watch list</a></div></span>
-                  <span ng-if="movie.tracked && !movie.watched"><div><a ng-click="updateRating()" href="">No stars</a></div></span>
-                  <span ng-if="movie.watched"><div><a ng-click="updateRating()" href=""><movie-display movie="movie" max-rating="10"></movie-display></a></div></span>
-                  <span ng-if="movie.tracked"><div><a class="deleteMovie" ng-click="delete(movie)" href="">Delete</a></div></span>
-                </div>
+                <span ng-if="movie.watched"><div><a ng-click="updateRating()" href=""><movie-display movie="movie" max-rating="10"></movie-display></a></div></span>
+
+                <span ng-if="movie.tracked"><div><a class="deleteMovie" ng-click="delete(movie)" href="">Delete</a></div></span>
               </div>
-            </span>
-          </div>
-
+            </div>
+          </span>
         </div>
       </div>
+    </div>
   </div>
 </div>
 

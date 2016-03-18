@@ -34,7 +34,7 @@ app.directive("movieDisplay", function() {
         once it gets updated values.
        */
       scope.$watch('selectedMovie', function(value){
-        console.log("value changed");
+        // console.log("value changed");
         scope.selectedMovie = value;
         setStars();
       });
